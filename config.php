@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'production' => false,
+    'production' => true,
     'baseUrl' => '',
     'title' => 'Jigsaw',
     'description' => 'Website description.',
