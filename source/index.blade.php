@@ -119,7 +119,7 @@
                         class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                         <div class="p-6">
                             <div class="mb-4">
-                                <h3 class="text-xl font-bold text-black">Stup Images</h3>
+                                <h3 class="text-xl font-bold text-black">Stup Image</h3>
                             </div>
                             <p class="text-gray-700 mb-4">
                                 Stup Image is a Package For Storing / Updating the Images, More Clear Codes and Upgrade Readability. Integrated with Intervention Image Library
