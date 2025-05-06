@@ -22,6 +22,8 @@
     <!-- Plugins -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
 </head>
 
@@ -32,6 +34,7 @@
     <script>
         AOS.init();
     </script>
+    <script>hljs.highlightAll();</script>
 </body>
 
 </html>

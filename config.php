@@ -5,5 +5,10 @@ return [
     'baseUrl' => '',
     'title' => 'Jigsaw',
     'description' => 'Website description.',
-    'collections' => [],
+    'collections' => [
+        'articles' => [
+            'path' => '/article/{filename}',
+            'author' => 'Wirandra Alaya',
+        ]
+    ],
 ];
