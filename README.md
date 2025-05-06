@@ -4,8 +4,8 @@ This repository contains the source code for my personal blog built with:
 
 - [**Jigsaw**](https://jigsaw.tighten.com/) - Static site generator for Laravel
 - **Blade** - Templating engine for dynamic layouts
-- **Tailwind CSS** - Utility-first CSS framework
-- **Laravel Mix** - Asset compilation and bundling
+- [**Tailwind CSS**](https://tailwindcss.com/) - Utility-first CSS framework
+- [**Laravel Mix**](https://laravel-mix.com/) - Asset compilation and bundling
 
 ## Structure
 
