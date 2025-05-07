@@ -14,12 +14,14 @@
                     </p>
                 </div>
                 <div class="max-w-4xl flex items-center justify-center gap-4">
-                    <a href="#"
-                        class="flex-none rounded-full bg-black w-10 h-10 text-white flex items-center justify-center p-0 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=daycodestudioproject@gmail.com"
+                        class="flex-none rounded-full bg-black w-10 h-10 text-white flex items-center justify-center p-0 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+                        target="_blank">
                         <i class="bx bx-envelope text-xl m-auto"></i>
                     </a>
-                    <a href="#"
-                        class="flex-none rounded-full bg-black w-10 h-10 text-white flex items-center justify-center p-0 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+                    <a href="https://github.com/dayCod"
+                        class="flex-none rounded-full bg-black w-10 h-10 text-white flex items-center justify-center p-0 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+                        target="_blank">
                         <i class="bx bxl-github text-xl m-auto"></i>
                     </a>
                     <a href="#"
@@ -37,33 +39,35 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                    <div
-                        class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
-                        <div class="p-6">
-                            <div class="mb-4">
-                                <h3 class="text-xl font-bold text-black">Curtain</h3>
-                            </div>
-                            <p class="text-gray-700 mb-4">
-                                Curtain is a powerful Laravel package that enhances your application's maintenance mode functionality.
-                            </p>
-                            <div class="bg-gray-100 rounded-lg p-3 mb-4 border border-gray-200 shadow-sm">
-                                <div class="flex items-center mb-2">
-                                    <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
-                                    <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
-                                    <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                    @foreach ($page->packages as $package)
+                        <div
+                            class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                            <div class="p-6">
+                                <div class="mb-4">
+                                    <h3 class="text-xl font-bold text-black">{{ $package['fields']['package_name'] }}</h3>
                                 </div>
-                                <div class="bg-white p-2 rounded">
-                                    <code class="text-gray-800 font-mono text-sm">$ composer require daycode/curtain</code>
+                                <p class="text-gray-700 mb-4">
+                                    {{ $package['fields']['package_description'] }}
+                                </p>
+                                <div class="bg-gray-100 rounded-lg p-3 mb-4 border border-gray-200 shadow-sm">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                                    </div>
+                                    <div class="bg-white p-2 rounded">
+                                        <code class="text-gray-800 font-mono text-sm">$ {{ $package['fields']['package_composer_link'] }}</code>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500">v1.0.0</span>
-                                <a href="https://github.com/dayCod/curtain" class="text-black font-medium hover:text-gray-700 transition-colors" target="_blank">View on GitHub →</a>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">{{ $package['fields']['package_version'] }}</span>
+                                    <a href="{{ $package['fields']['reference_link'] }}" class="text-black font-medium hover:text-gray-700 transition-colors" target="_blank">View on GitHub →</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
-                    <div
+                    {{-- <div
                         class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                         <div class="p-6">
                             <div class="mb-4">
@@ -269,7 +273,7 @@
                                 <a href="https://github.com/dayCod/laravel-artisan-backup" class="text-black font-medium hover:text-gray-700 transition-colors" target="_blank">View on GitHub →</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
