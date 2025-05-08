@@ -532,6 +532,9 @@ video {
     max-width: 1536px;
   }
 }
+.collapse {
+  visibility: collapse;
+}
 .m-auto {
   margin: auto;
 }
@@ -548,11 +551,11 @@ video {
 .mb-4 {
   margin-bottom: 1rem;
 }
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
 .mr-2 {
   margin-right: 0.5rem;
+}
+.block {
+  display: block;
 }
 .flex {
   display: flex;
@@ -595,6 +598,9 @@ video {
 }
 .flex-none {
   flex: none;
+}
+.border-collapse {
+  border-collapse: collapse;
 }
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));

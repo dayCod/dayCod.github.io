@@ -289,8 +289,8 @@
                     <article class="border-b border-gray-100 pb-10" data-aos="fade-up">
                         <div class="flex flex-col md:flex-row md:items-baseline gap-4">
                             <span class="text-xs text-gray-500 font-mono tracking-wider">May 6, 2025</span>
-                            <a href="/article/optimistic-vs-pesimistic-locking" class="text-3xl italic text-gray-900 hover:text-gray-700 transition-colors duration-300 font-quicksand">
-                                Optimistic vs Pesimistic Locking
+                            <a href="/article/unlocking-laravel-magic-app-resolve-tap" class="text-3xl italic text-gray-900 hover:text-gray-700 transition-colors duration-300 font-quicksand">
+                                Unlocking Laravel Magic: The Power of app(), resolve(), and tap()
                             </a>
                         </div>
                     </article>
