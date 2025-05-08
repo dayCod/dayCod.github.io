@@ -33,7 +33,7 @@ $result = $result->sortBy('createdTime')->values()->toArray();
 return [
     'production' => false,
     'baseUrl' => '',
-    'title' => 'Daycode',
+    'title' => 'Daycode - Wirandra Alaya',
     'description' => 'Website description.',
     'packages' => $result,
     'collections' => [
