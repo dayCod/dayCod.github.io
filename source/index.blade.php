@@ -10,7 +10,7 @@
                 class="bg-gray-100/50 w-full h-[35rem] text-center flex flex-col items-center justify-center rounded-xl gap-8 px-5">
                 <div class="max-w-4xl text-black">
                     <p class="text-2xl md:text-3xl lg:text-4xl" data-aos="fade-up" data-aos-delay="100">
-                        Wirandra <small class="text-sm">(ウィランドラ)</small> is a web developer, specialize in laravel/php development, collaborating with startups, digital agencies, and global enterprises to build scalable web applications. also: cartoon fan, book reader and chess player :).
+                        Wirandra <small class="text-sm">(ウィランドラ)</small> is a web developer, specialize in laravel/php development, collaborating with startups, digital agencies, and global enterprises to build scalable web applications.
                     </p>
                 </div>
                 <div class="max-w-4xl flex items-center justify-center gap-4">
@@ -24,7 +24,7 @@
                         target="_blank">
                         <i class="bx bxl-github text-xl m-auto"></i>
                     </a>
-                    <a href="#"
+                    <a href="#package-creations"
                         class="text-xs rounded-full bg-black w-full h-10 text-white flex items-center justify-center px-8 transition duration-300 ease-in-out sm:text-sm md:text-base hover:-translate-y-1 hover:scale-110">
                         Use my packages
                     </a>
@@ -35,7 +35,7 @@
         {{-- Creation Section --}}
         <section data-section="creation" class="pt-12">
             <div class="container mx-auto px-4">
-                <h1 class="text-lg font-bold text-gray-400/75 text-center mb-10">Creations</h1>
+                <h1 class="text-lg font-bold text-gray-400/75 text-center mb-10" id="package-creations">Creations</h1>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 

@@ -10,6 +10,10 @@
         font-style: normal;
     }
 
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
         height: 1000px;
     }
