@@ -285,7 +285,16 @@
                 <h1 class="text-lg font-bold text-gray-400/75 text-center mb-10">Writings</h1>
 
                 <div class="space-y-10">
-                    <!-- Article 1 -->
+
+                    <article class="border-b border-gray-100 pb-10" data-aos="fade-up">
+                        <div class="flex flex-col md:flex-row md:items-baseline gap-4">
+                            <span class="text-xs text-gray-500 font-mono tracking-wider">May 9, 2025</span>
+                            <a href="/article/concurrency-made-simple" class="text-3xl italic text-gray-900 hover:text-gray-700 transition-colors duration-300 font-quicksand">
+                                Unlocking Laravel Magic: Concurrency Made Simple
+                            </a>
+                        </div>
+                    </article>
+
                     <article class="border-b border-gray-100 pb-10" data-aos="fade-up">
                         <div class="flex flex-col md:flex-row md:items-baseline gap-4">
                             <span class="text-xs text-gray-500 font-mono tracking-wider">May 6, 2025</span>
@@ -294,6 +303,7 @@
                             </a>
                         </div>
                     </article>
+
                 </div>
             </div>
         </section>
