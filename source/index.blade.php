@@ -288,6 +288,15 @@
 
                     <article class="border-b border-gray-100 pb-10" data-aos="fade-up">
                         <div class="flex flex-col md:flex-row md:items-baseline gap-4">
+                            <span class="text-xs text-gray-500 font-mono tracking-wider">May 10, 2025</span>
+                            <a href="/article/unlocking-laravel-magic-mastering-pipelines" class="text-3xl italic text-gray-900 hover:text-gray-700 transition-colors duration-300 font-quicksand">
+                                Unlocking Laravel Magic: Mastering Pipelines Easily
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="border-b border-gray-100 pb-10" data-aos="fade-up">
+                        <div class="flex flex-col md:flex-row md:items-baseline gap-4">
                             <span class="text-xs text-gray-500 font-mono tracking-wider">May 9, 2025</span>
                             <a href="/article/concurrency-made-simple" class="text-3xl italic text-gray-900 hover:text-gray-700 transition-colors duration-300 font-quicksand">
                                 Unlocking Laravel Magic: Concurrency Made Simple
