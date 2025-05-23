@@ -10,7 +10,7 @@
                 class="bg-gray-100/50 w-full h-[35rem] text-center flex flex-col items-center justify-center rounded-xl gap-8 px-5">
                 <div class="max-w-4xl text-black">
                     <p class="text-2xl md:text-3xl lg:text-4xl" data-aos="fade-up" data-aos-delay="100">
-                        Wirandra <small class="text-sm">(ウィランドラ)</small> is a web developer, specialize in laravel/php development, collaborating with startups, digital agencies, and global enterprises to build scalable web applications.
+                        Wirandra <small class="text-sm">(ウィランドラ)</small> is a web developer, experienced in collaborating with startups, digital agencies, and global enterprises to build scalable web applications.
                     </p>
                 </div>
                 <div class="max-w-4xl flex items-center justify-center gap-4">
@@ -285,6 +285,15 @@
                 <h1 class="text-lg font-bold text-gray-400/75 text-center mb-10">Writings</h1>
 
                 <div class="space-y-10">
+
+                    <article class="border-b border-gray-100 pb-10" data-aos="fade-up">
+                        <div class="flex flex-col md:flex-row md:items-baseline gap-4">
+                            <span class="text-xs text-gray-500 font-mono tracking-wider">May 23, 2025</span>
+                            <a href="/article/laravel-idempotency-key-safe-requests" class="text-3xl italic text-gray-900 hover:text-gray-700 transition-colors duration-300 font-quicksand">
+                                Idempotency Key for Safe Requests
+                            </a>
+                        </div>
+                    </article>
 
                     <article class="border-b border-gray-100 pb-10" data-aos="fade-up">
                         <div class="flex flex-col md:flex-row md:items-baseline gap-4">
