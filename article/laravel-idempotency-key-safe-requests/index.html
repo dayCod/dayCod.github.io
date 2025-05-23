@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="/article/laravel-idempotency-key-safe-requests">
+    
+
+    <meta name="title" content="    Idempotency Key for Safe Requests
+" />
+    <meta name="author" content="Wirandra Alaya Rahman Daycode" />
+    <meta name="keywords" content="    Laravel idempotency key
+" />
+    <meta name="description" content="    Prevent duplicate submissions and ensure safe API calls in Laravel with the powerful idempotency key technique.
+" />
+
+    <title>Daycode - Wirandra Alaya</title>
+    <link rel="stylesheet" href="/assets/build/css/main.css?id=87763939f17c9045894354e0c4af7f4a">
+    <script defer src="/assets/build/js/main.js?id=14f70589ad3df51a8631ea89fa9df9e6"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+    <!-- Application Styles -->
+    <style>
+    :root {
+        --font-family-inconsolata: "Inconsolata", monospace;
+        --font-family-quicksand: "Quicksand", sans-serif;
+        --font-family-lora: "Lora", serif;
+    }
+
+    * {
+        font-family: var(--font-family-quicksand);
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        height: 1000px;
+    }
+
+    /* Medium-inspired styling for rendered Markdown within .markdown-style class */
+    .markdown-style {
+        font-family: var(--font-family-lora) !important;
+        line-height: 1.65;
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 30px 20px;
+        color: #171717;
+        background-color: #fff;
+    }
+
+    /* Headings */
+    .markdown-style h1,
+    .markdown-style h2,
+    .markdown-style h3,
+    .markdown-style h4,
+    .markdown-style h5,
+    .markdown-style h6 {
+        font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+        color: #171717;
+        margin: 1.5em 0 0.5em;
+        font-weight: 700;
+    }
+
+    .markdown-style h1 {
+        font-size: 2.5em;
+        line-height: 1.2;
+    }
+
+    .markdown-style h2 {
+        font-size: 2em;
+        line-height: 1.3;
+    }
+
+    .markdown-style h3 {
+        font-size: 1.6em;
+    }
+
+    .markdown-style h4 {
+        font-size: 1.3em;
+    }
+
+    /* Paragraphs */
+    .markdown-style p {
+        margin: 1.2em 0;
+        font-size: 1.1em;
+        text-align: left;
+    }
+
+    /* Links */
+    .markdown-style a {
+        color: #03a87c;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(3, 168, 124, 0.2);
+        transition: all 0.2s ease;
+    }
+
+    .markdown-style a:hover {
+        color: #028a67;
+        border-bottom: 1px solid #03a87c;
+    }
+
+    /* Lists */
+    .markdown-style ul,
+    .markdown-style ol {
+        margin: 1.2em 0;
+        padding-left: 2.5em;
+    }
+
+    .markdown-style li {
+        margin: 0.8em 0;
+        font-size: 1.1em;
+    }
+
+    /* Blockquotes */
+    .markdown-style blockquote {
+        border-left: 4px solid #e2e2e2;
+        margin: 1.5em 0;
+        padding: 0.5em 1.5em;
+        font-style: italic;
+        color: #555;
+    }
+
+    .markdown-style blockquote p {
+        margin: 0;
+        font-size: 1.1em;
+    }
+
+    /* Code blocks */
+    .markdown-style pre,
+    .markdown-style code {
+        font-family: 'Source Code Pro', 'Courier New', monospace;
+        background-color: #f7f7f7;
+        border-radius: 5px;
+    }
+
+    .markdown-style code {
+        padding: 2px 6px;
+        font-size: 0.95em;
+        color: #d63333;
+    }
+
+    .markdown-style pre {
+        padding: 1.2em;
+        overflow-x: auto;
+        margin: 1.5em 0;
+        line-height: 1.45;
+    }
+
+    /* Inline code */
+    .markdown-style p code {
+        background-color: #f0f0f0;
+    }
+
+    /* Tables */
+    .markdown-style table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5em 0;
+        font-size: 1em;
+    }
+
+    .markdown-style th,
+    .markdown-style td {
+        border: 1px solid #e2e2e2;
+        padding: 0.8em;
+        text-align: left;
+    }
+
+    .markdown-style th {
+        background-color: #fafafa;
+        font-weight: 600;
+    }
+
+    /* Images */
+    .markdown-style img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 1.5em auto;
+        border-radius: 3px;
+    }
+
+    /* Horizontal rule */
+    .markdown-style hr {
+        border: none;
+        border-top: 1px solid #e2e2e2;
+        margin: 2.5em 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .markdown-style {
+            padding: 20px 15px;
+            font-size: 1em;
+        }
+
+        .markdown-style h1 {
+            font-size: 2em;
+        }
+
+        .markdown-style h2 {
+            font-size: 1.6em;
+        }
+
+        .markdown-style table {
+            font-size: 0.95em;
+        }
+    }
+</style>
+
+    <!-- Plugins -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    
+
+</head>
+
+<body class="text-gray-900 font-sans antialiased">
+        <div class="px-5 py-8">
+
+        
+        <section data-section="banner">
+            <div class="flex justify-between">
+                <a href="/"
+                    class="text-black font-medium bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:text-gray-700 transition-colors">
+                    <i class="bx bx-arrow-back"></i>
+                </a>
+                <h1 class="text-lg font-bold text-gray-400/75 mb-10">Daycode</h1>
+                <div></div>
+            </div>
+            <div
+                class="bg-gray-100/50 w-full h-[20rem] text-center flex flex-col items-center justify-center rounded-xl gap-8 px-5 py-10">
+                <div class="max-w-4xl text-black">
+                    <p class="text-2xl md:text-3xl lg:text-4xl" data-aos="fade-up" data-aos-delay="100">
+                        Idempotency Key for Safe Requests
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section data-section="content" class="pt-12">
+            <div class="prose max-w-4xl mx-auto">
+                <div class="markdown-style">
+                    <p align="center">
+  <img src="https://github.com/dayCod/personal-article/blob/main/laravel-idempotency-key-safe-requests/image.jpg?raw=true" alt="Idempotency Key for Safe Requests">
+</p>
+<p>Imagine a user clicking the payment button twice—now you have two transactions instead of one. This isn’t just annoying; it could be catastrophic. That’s where idempotency keys come into play. They ensure that multiple identical requests only execute once, making your Laravel applications more robust and reliable.</p>
+<p>In this article, we’ll break down what idempotency is, why it matters, and how to implement it effectively in Laravel. Whether you're working with APIs, payment processing, or form submissions, adding idempotency is a must-have safeguard.</p>
+<h2>Understanding Idempotency in Laravel</h2>
+<h3>What is an Idempotency Key?</h3>
+<p>An idempotency key is a unique identifier sent with a request to ensure the operation is not repeated. Think of it as a fingerprint for a request—if Laravel sees the same key again, it knows to skip reprocessing.</p>
+<h3>Why Use Idempotency Keys?</h3>
+<p>Repeated requests can cause duplicated data, double charges, or unintended side effects. Idempotency ensures that retries—due to network issues or user behavior—don't lead to duplicate operations.</p>
+<h2>How to Implement Laravel Idempotency Key</h2>
+<h3>Create a Middleware for Idempotency</h3>
+<p>The first step is to create a middleware that checks if a request with the same key has already been processed.</p>
+<pre><code>php artisan make:middleware EnsureIdempotencyKey
+</code></pre>
+<p>inside <code>EnsureIdempotencyKey.php</code>:</p>
+<pre><code class="language-php">public function handle($request, Closure $next)
+{
+    $key = $request-&gt;header('Idempotency-Key');
+    
+    if (!$key) {
+        return response()-&gt;json(['message' =&gt; 'Idempotency key required.'], 400);
+    }
+
+    if (Cache::has($key)) {
+        return response()-&gt;json(['message' =&gt; 'Duplicate request.'], 409);
+    }
+
+    Cache::put($key, true, 60); // Store for 60 seconds
+
+    return $next($request);
+}
+</code></pre>
+<h3>Register the Middleware</h3>
+<p>You can apply it globally or on specific routes that need protection.</p>
+<pre><code class="language-php">Route::post('/payment', 'PaymentController@process')-&gt;middleware('EnsureIdempotencyKey');
+</code></pre>
+<h2>Conclusion</h2>
+<p>Idempotency keys are an underrated but powerful tool to prevent duplicate requests and improve the reliability of your Laravel apps. Whether you're handling payments or form submissions, implementing this mechanism can save you from headaches and angry users.</p>
+<p>So next time you're building something mission-critical, ask yourself: &quot;Did I Laravel-proof this with an idempotency key?&quot;</p>
+<blockquote>
+<p>&quot;One request to rule them all. Laravel’s got your back. — Daycode&quot;</p>
+</blockquote>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/GarapDigital/idempotent-transactions">Idempotency Key Concept</a></li>
+<li><a href="https://docs.stripe.com/api/idempotent_requests">Best Practice for API Idempotency</a></li>
+</ul>
+
+                </div>
+            </div>
+        </section>
+
+        
+        <footer class="pt-16">
+            <div class="container mx-auto px-4">
+                <div class="text-center">
+                    <p class="text-sm text-gray-500">© 2025 Wirandra Alaya. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    
+</body>
+
+</html>
